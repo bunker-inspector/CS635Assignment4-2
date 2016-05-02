@@ -16,4 +16,9 @@ public class HeaderPrintVisitor implements IXMLObjectVisitor {
     public void visit(Text text) {
 
     }
+
+    @Override
+    public void visit(XMLObject xmlObject) {
+        xmlObject.accept(this);
+    }
 }

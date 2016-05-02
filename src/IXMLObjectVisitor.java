@@ -5,4 +5,5 @@ public interface IXMLObjectVisitor {
     void visit(Document document);
     void visit(Header header);
     void visit(Text text);
+    void visit(XMLObject xmlObject);
 }

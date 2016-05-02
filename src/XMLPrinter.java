@@ -49,18 +49,18 @@ public class XMLPrinter extends DefaultHandler {
     public void characters(char[] ch, int start, int length) throws SAXException {
         if(recentTag != null) {
             if(root == null) {
-                root = xmlCompositeFactory(recentTag, new String(ch, start, length));
+                root = xmlObjectFactory(recentTag, new String(ch, start, length));
                 encounterOrder.push(root);
             }
             else {
-                XMLComposite newComposite = xmlCompositeFactory(recentTag, new String(ch, start, length));
+                XMLComposite newComposite = xmlObjectFactory(recentTag, new String(ch, start, length));
                 encounterOrder.peek().addElement(newComposite);
                 encounterOrder.push(newComposite);
             }
         }
     }
 
-    private XMLComposite xmlCompositeFactory(String tag, String value) {
+    private XMLComposite xmlObjectFactory(String tag, String value) {
         switch (tag) {
             case "CS635Document":
                 return new XMLComposite(new Document(value));
@@ -80,7 +80,7 @@ public class XMLPrinter extends DefaultHandler {
 
     public void printHtml() {
         PrintHTMLVisitor phv = new PrintHTMLVisitor();
-        visitAll(root, phv);
+        root.value.accept(phv);
     }
 
     private void visitAll(XMLComposite composite, IXMLObjectVisitor visitor) {

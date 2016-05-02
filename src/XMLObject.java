@@ -3,6 +3,7 @@
  */
 abstract class XMLObject {
     protected String text;
+    protected XMLComposite container;
 
     XMLObject() {}
 

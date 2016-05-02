@@ -10,6 +10,7 @@ public class XMLComposite {
     XMLComposite(XMLObject o) {
         value = o;
         children = new Vector<>();
+        o.container = this;
     }
 
     void addElement(XMLComposite x) {
